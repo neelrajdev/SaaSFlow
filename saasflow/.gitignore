@@ -1,0 +1,17 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE Files
+.vscode/
+.idea/
+
+# Node / Dependency artifacts (if any tooling is run locally)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and logs
+*.log
+.env
