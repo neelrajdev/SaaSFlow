@@ -1,0 +1,29 @@
+[
+  {
+    "id": "free",
+    "name": "Free",
+    "baseFeePaise": 0,
+    "perMinuteLimit": 5,
+    "monthlyLimit": 10000,
+    "includedCalls": 10000,
+    "overageRatePaisePerThousand": 0
+  },
+  {
+    "id": "starter",
+    "name": "Starter",
+    "baseFeePaise": 99900,
+    "perMinuteLimit": 20,
+    "monthlyLimit": 100000,
+    "includedCalls": 50000,
+    "overageRatePaisePerThousand": 4000
+  },
+  {
+    "id": "pro",
+    "name": "Pro",
+    "baseFeePaise": 299900,
+    "perMinuteLimit": 60,
+    "monthlyLimit": 500000,
+    "includedCalls": 200000,
+    "overageRatePaisePerThousand": 2000
+  }
+]
