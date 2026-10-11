@@ -1,0 +1,190 @@
+[
+  {
+    "id": "shopkart",
+    "name": "NovaCart Commerce",
+    "planId": "starter",
+    "apiKey": "sf_live_shopkart_demo_key_98234",
+    "status": "active",
+    "monthlyUsage": 43000,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "starter",
+    "staff": [
+      {
+        "id": "staff_nc_1",
+        "name": "Devon Vance",
+        "role": "Lead Integration Engineer",
+        "email": "devon@novacart.com",
+        "apiKey": "sf_live_shopkart_demo_key_98234",
+        "monthlyUsage": 25000
+      },
+      {
+        "id": "staff_nc_2",
+        "name": "Marcus Zhao",
+        "role": "Mobile App Developer",
+        "email": "marcus@novacart.com",
+        "apiKey": "sf_live_novacart_marcus_55102",
+        "monthlyUsage": 18000
+      }
+    ]
+  },
+  {
+    "id": "weathernow",
+    "name": "ClimaCast Analytics",
+    "planId": "free",
+    "apiKey": "sf_live_weathernow_demo_key_11204",
+    "status": "active",
+    "monthlyUsage": 7800,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "free",
+    "staff": [
+      {
+        "id": "staff_cc_1",
+        "name": "Dr. Sarah Chen",
+        "role": "Principal Data Scientist",
+        "email": "sarah@climacast.io",
+        "apiKey": "sf_live_weathernow_demo_key_11204",
+        "monthlyUsage": 4800
+      },
+      {
+        "id": "staff_cc_2",
+        "name": "Tom Higgins",
+        "role": "Sensor Fleet Engineer",
+        "email": "tom@climacast.io",
+        "apiKey": "sf_live_climacast_tom_33918",
+        "monthlyUsage": 3000
+      }
+    ]
+  },
+  {
+    "id": "logitrack",
+    "name": "Apex Global Logistics",
+    "planId": "pro",
+    "apiKey": "sf_live_logitrack_demo_key_88412",
+    "status": "active",
+    "monthlyUsage": 185000,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "pro",
+    "staff": [
+      {
+        "id": "staff_agl_1",
+        "name": "David Sterling",
+        "role": "VP of Supply Chain Systems",
+        "email": "david@apexlogistics.com",
+        "apiKey": "sf_live_logitrack_demo_key_88412",
+        "monthlyUsage": 110000
+      },
+      {
+        "id": "staff_agl_2",
+        "name": "Priya Nair",
+        "role": "Dispatch Operations Lead",
+        "email": "priya@apexlogistics.com",
+        "apiKey": "sf_live_apex_priya_77192",
+        "monthlyUsage": 75000
+      }
+    ]
+  },
+  {
+    "id": "payeasy",
+    "name": "PayEasy Financial Technologies",
+    "planId": "starter",
+    "apiKey": "sf_live_payeasy_demo_key_44319",
+    "status": "active",
+    "monthlyUsage": 61250,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "starter",
+    "staff": [
+      {
+        "id": "staff_pe_1",
+        "name": "Vikram Sethi",
+        "role": "Head of Merchant API Services",
+        "email": "vikram@payeasy.io",
+        "apiKey": "sf_live_payeasy_demo_key_44319",
+        "monthlyUsage": 35000
+      },
+      {
+        "id": "staff_pe_2",
+        "name": "Ananya Roy",
+        "role": "Senior Checkout Backend Engineer",
+        "email": "ananya@payeasy.io",
+        "apiKey": "sf_live_payeasy_ananya_88123",
+        "monthlyUsage": 26250
+      }
+    ]
+  },
+  {
+    "id": "medibook",
+    "name": "PulseCare Health Cloud",
+    "planId": "free",
+    "apiKey": "sf_live_medibook_demo_key_77123",
+    "status": "suspended",
+    "monthlyUsage": 2100,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "free",
+    "staff": [
+      {
+        "id": "staff_pc_1",
+        "name": "Dr. Aris Thorne",
+        "role": "Chief Health Informatics Officer",
+        "email": "aris@pulsecare.health",
+        "apiKey": "sf_live_medibook_demo_key_77123",
+        "monthlyUsage": 2100
+      }
+    ]
+  },
+  {
+    "id": "edulearn",
+    "name": "Syntheta Learning Labs",
+    "planId": "starter",
+    "apiKey": "sf_live_edulearn_demo_key_55490",
+    "status": "active",
+    "monthlyUsage": 28000,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "starter",
+    "staff": [
+      {
+        "id": "staff_sl_1",
+        "name": "Claire Dupont",
+        "role": "Director of Learning Platforms",
+        "email": "claire@synthetalabs.edu",
+        "apiKey": "sf_live_edulearn_demo_key_55490",
+        "monthlyUsage": 16000
+      },
+      {
+        "id": "staff_sl_2",
+        "name": "Karthik Raja",
+        "role": "Assessment Engine Developer",
+        "email": "karthik@synthetalabs.edu",
+        "apiKey": "sf_live_syntheta_karthik_12049",
+        "monthlyUsage": 12000
+      }
+    ]
+  },
+  {
+    "id": "foodrush",
+    "name": "CraveDash Hyperlocal Delivery",
+    "planId": "pro",
+    "apiKey": "sf_live_foodrush_demo_key_33109",
+    "status": "active",
+    "monthlyUsage": 312000,
+    "billingMonth": "2026-10",
+    "nextMonthPlanId": "pro",
+    "staff": [
+      {
+        "id": "staff_cd_1",
+        "name": "Rohan Mehra",
+        "role": "Dispatch Services Lead",
+        "email": "rohan@cravedash.com",
+        "apiKey": "sf_live_foodrush_demo_key_33109",
+        "monthlyUsage": 190000
+      },
+      {
+        "id": "staff_cd_2",
+        "name": "Siddharth Nair",
+        "role": "Fleet Telematics Architect",
+        "email": "sid@cravedash.com",
+        "apiKey": "sf_live_cravedash_sid_99014",
+        "monthlyUsage": 122000
+      }
+    ]
+  }
+]
