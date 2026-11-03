@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaSFlow — Simulated API Management & Billing Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5" style="max-width: 960px;">
+        <header class="text-center mb-5">
+      <div class="d-inline-flex align-items-center justify-content-center p-3 mb-3 bg-white rounded-4 shadow-sm border brand-hero-badge">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <h1 class="display-5 fw-bold text-dark tracking-tight">SaaSFlow</h1>
+      <p class="lead text-secondary mx-auto" style="max-width: 620px;">
+        A pure browser-based simulation of multi-consumer API management, fixed-window rate limiting, and metered billing.
+      </p>
+    </header>
+
+        <div class="card border border-subtle shadow-md rounded-4 p-4 p-md-5 bg-white mb-4">
+      <div class="text-center mb-4">
+        <h2 class="h4 fw-bold text-dark mb-1">Select Your Demo Persona</h2>
+        <p class="text-secondary small mb-3">Choose a role to experience SaaSFlow from different organizational perspectives.</p>
+        <div class="d-inline-flex align-items-center gap-2 p-2 px-3 bg-light rounded-pill border small text-muted">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span><strong>Instant Demo:</strong> No password required. Choose a persona below and launch.</span>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4" id="role-selection-group">
+                <div class="col-md-4">
+          <div class="role-select-card text-center h-100 selected" data-role="founder" tabindex="0" role="button" aria-pressed="true">
+            <div class="role-icon-wrap mb-3 mx-auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+            </div>
+            <span class="badge bg-primary-subtle text-primary border mb-2">Platform Owner</span>
+            <h3 class="h5 fw-bold text-dark mb-1">Founder</h3>
+            <div class="small fw-semibold text-primary mb-2">Alex Rivera</div>
+            <p class="text-secondary small mb-0">
+              Platform owner view. Monitor system traffic, aggregate revenue MRR, and manage consumer subscription tiers.
+            </p>
+          </div>
+        </div>
+
+                <div class="col-md-4">
+          <div class="role-select-card text-center h-100" data-role="consumer" tabindex="0" role="button" aria-pressed="false">
+            <div class="role-icon-wrap mb-3 mx-auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+            </div>
+            <span class="badge bg-info-subtle text-info-emphasis border mb-2">Client Developer</span>
+            <h3 class="h5 fw-bold text-dark mb-1">API Consumer</h3>
+            <div class="small fw-semibold text-info-emphasis mb-2">Devon Vance</div>
+            <p class="text-secondary small mb-0">
+              Client developer view. Access consumer-scoped API keys, inspect per-minute quotas, and test API endpoints.
+            </p>
+          </div>
+        </div>
+
+                <div class="col-md-4">
+          <div class="role-select-card text-center h-100" data-role="finance" tabindex="0" role="button" aria-pressed="false">
+            <div class="role-icon-wrap mb-3 mx-auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            </div>
+            <span class="badge bg-warning-subtle text-warning-emphasis border mb-2">Billing Admin</span>
+            <h3 class="h5 fw-bold text-dark mb-1">Finance</h3>
+            <div class="small fw-semibold text-warning-emphasis mb-2">Elena Rostova</div>
+            <p class="text-secondary small mb-0">
+              Billing administrator view. Review monthly invoices, inspect overage calculations, and record payments.
+            </p>
+          </div>
+        </div>
+      </div>
+
+            <div id="consumer-tenant-selector-group" class="p-3 bg-light rounded-3 border mb-4 d-none">
+        <label for="select-tenant" class="form-label fw-bold small text-secondary d-flex align-items-center gap-2">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Select Client Consumer to Impersonate:
+        </label>
+        <select id="select-tenant" class="form-select" aria-label="Select consumer">
+          <option value="shopkart" selected>NovaCart Commerce (Starter Plan — ~43,000 calls)</option>
+          <option value="weathernow">ClimaCast Analytics (Free Plan — ~7,800 calls)</option>
+          <option value="logitrack">Apex Global Logistics (Pro Plan — ~185,000 calls)</option>
+          <option value="payeasy">PayEasy Financial Technologies (Starter Plan — 61,250 calls, PRD Benchmark)</option>
+          <option value="medibook">PulseCare Health Cloud (Free Plan — Suspended)</option>
+          <option value="edulearn">Syntheta Learning Labs (Starter Plan — ~28,000 calls)</option>
+          <option value="foodrush">CraveDash Hyperlocal Delivery (Pro Plan — ~312,000 calls)</option>
+        </select>
+        <div class="form-text small text-muted">
+          As an API Consumer, you can only see the credentials and usage metrics of your selected consumer.
+        </div>
+      </div>
+
+            <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 pt-3 border-top">
+        <button id="btn-reset-data" type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+          Reset Demo Data
+        </button>
+
+        <button id="btn-enter-dashboard" type="button" class="btn btn-primary px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm">
+          <span>Enter Dashboard</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+
+        <div class="text-center text-muted small px-3">
+      <p class="mb-1"><strong>Simulated Educational Application:</strong> No actual backend server or external network calls are made.</p>
+      <p class="mb-0">All API responses, fixed-window rate limiting, and invoice calculations occur client-side via JavaScript ES Modules and <code>localStorage</code>.</p>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>
