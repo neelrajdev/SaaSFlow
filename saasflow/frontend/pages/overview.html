@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder Overview — SaaSFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div id="app-layout">
+        <div id="page-content">
+
+            <div id="welcome-guide-slot"></div>
+
+            <div id="quota-alert-container" class="mb-4 d-none">
+        <div class="alert alert-warning border-warning d-flex align-items-center justify-content-between p-3 rounded-3 shadow-sm mb-0">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-warning"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <div>
+              <strong class="text-dark">High Quota Alert:</strong>
+              <span id="quota-alert-text" class="text-secondary ms-1">One or more consumers have consumed over 90% of their monthly limit.</span>
+            </div>
+          </div>
+          <a href="tenants.html" class="btn btn-warning btn-sm fw-semibold">Review Consumers</a>
+        </div>
+      </div>
+
+            <div class="app-card mb-4 bg-white p-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge bg-primary-subtle text-primary border px-2 py-1">Traffic Simulator</span>
+          <span class="small text-secondary">Simulate live background API requests across active consumers:</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="live-pulse-dot d-none" id="live-traffic-dot" title="Traffic simulator running"></span>
+          <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+            <input class="form-check-input" type="checkbox" role="switch" id="toggle-traffic-simulation" style="cursor: pointer; width: 2.5em; height: 1.25em;">
+            <label class="form-check-label fw-semibold small text-dark" for="toggle-traffic-simulation" id="traffic-simulation-label">Traffic Simulation: OFF</label>
+          </div>
+        </div>
+      </div>
+
+            <div class="row g-3 mb-4" id="kpi-container">
+                <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="kpi-title">
+                  Total API Calls
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Total simulated HTTP calls processed by the SaaSFlow gateway across active client endpoints.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Total simulated HTTP calls processed by the SaaSFlow gateway across active client endpoints.</span>
+                  </span>
+                </span>
+                <span class="fs-5">📡</span>
+              </div>
+              <div class="kpi-value text-primary" id="kpi-total-calls">639,150</div>
+            </div>
+            <div class="kpi-sub">
+              <span class="badge bg-success-subtle text-success">Active Month</span>
+              <span>Across all consumers</span>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="kpi-title">
+                  Successful (200)
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="HTTP 200 OK responses processed successfully without rate limits or errors.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">HTTP 200 OK responses processed successfully without rate limits or errors.</span>
+                  </span>
+                </span>
+                <span class="fs-5">✅</span>
+              </div>
+              <div class="kpi-value text-success" id="kpi-success-calls">618,290</div>
+            </div>
+            <div class="kpi-sub">
+              <span class="text-secondary small">96.7% success rate</span>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="kpi-title">
+                  Blocked Requests
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Requests rejected with HTTP 429 (rate limited or monthly quota exhausted) or 401 (unauthorized).">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Requests rejected with HTTP 429 (rate limited or monthly quota exhausted) or 401 (unauthorized).</span>
+                  </span>
+                </span>
+                <span class="fs-5">🛑</span>
+              </div>
+              <div class="kpi-value text-critical" id="kpi-blocked-calls">20,860</div>
+            </div>
+            <div class="kpi-sub">
+              <span class="badge bg-danger-subtle text-danger">429 Throttled</span>
+              <span>Rate limits & quotas</span>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="kpi-title">
+                  Estimated MRR
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Monthly Recurring Revenue: The aggregate predictable revenue from active consumer base subscriptions.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Monthly Recurring Revenue: The aggregate predictable revenue from active consumer base subscriptions.</span>
+                  </span>
+                </span>
+                <span class="fs-5">💰</span>
+              </div>
+              <div class="kpi-value text-dark" id="kpi-mrr">₹8,996</div>
+            </div>
+            <div class="kpi-sub">
+              <span class="text-secondary small">Base subscription total</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="app-card mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap gap-2">
+          <div>
+            <h2 class="h5 fw-bold text-dark mb-0">Platform API Traffic Trend</h2>
+            <p class="text-secondary small mb-0">Aggregate daily request volume and throughput across all active client organizations.</p>
+          </div>
+          <span class="badge bg-light text-secondary border px-2 py-1">📈 Real-Time 7-Day Curve</span>
+        </div>
+
+        <div id="overview-traffic-chart" class="fancy-line-chart-container py-2" aria-label="7 day platform API traffic curve">
+                  </div>
+      </div>
+
+            <div class="app-card mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+          <div>
+            <h2 class="h5 fw-bold text-dark mb-0">Top Consumers by Usage</h2>
+            <p class="text-secondary small mb-0">Monthly consumption vs. assigned subscription quotas.</p>
+          </div>
+          <a href="tenants.html" class="btn btn-outline-primary btn-sm">View All Consumers →</a>
+        </div>
+
+        <div class="app-table-container">
+          <table class="app-table mobile-table-card" aria-label="Top consumers by usage">
+            <thead>
+              <tr>
+                <th>Consumer Name</th>
+                <th>Plan Tier</th>
+                <th>Monthly Calls</th>
+                <th>Quota Utilization</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="top-tenants-table-body">
+                            <tr>
+                <td data-label="Consumer Name"><strong>CraveDash Hyperlocal Delivery</strong></td>
+                <td data-label="Plan Tier"><span class="badge-plan badge-plan-pro">Pro</span></td>
+                <td data-label="Monthly Calls">312,000 / 500,000</td>
+                <td data-label="Quota Utilization" style="min-width: 180px;">
+                  <div class="quota-container">
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar quota-normal" role="progressbar" style="width: 62%;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="small text-secondary">62% used</span>
+                  </div>
+                </td>
+                <td data-label="Status"><span class="badge-status badge-status-active">Active</span></td>
+                <td data-label="Action"><a href="tenant-detail.html?tenantId=foodrush" class="btn btn-sm btn-light border py-1 px-2">Details</a></td>
+              </tr>
+              <tr>
+                <td data-label="Consumer Name"><strong>PayEasy Financial Technologies</strong></td>
+                <td data-label="Plan Tier"><span class="badge-plan badge-plan-starter">Starter</span></td>
+                <td data-label="Monthly Calls">61,250 / 100,000</td>
+                <td data-label="Quota Utilization" style="min-width: 180px;">
+                  <div class="quota-container">
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar quota-normal" role="progressbar" style="width: 61%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="small text-secondary">61% used (Overage: 11,250)</span>
+                  </div>
+                </td>
+                <td data-label="Status"><span class="badge-status badge-status-active">Active</span></td>
+                <td data-label="Action"><a href="tenant-detail.html?tenantId=payeasy" class="btn btn-sm btn-light border py-1 px-2">Details</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+            <div class="app-card">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+          <div>
+            <h2 class="h5 fw-bold text-dark mb-0">Recent API Activity</h2>
+            <p class="text-secondary small mb-0">Real-time log of the latest API requests handled by the Gateway.</p>
+          </div>
+          <span class="badge bg-light text-secondary border">Max 500 records retained</span>
+        </div>
+
+        <div class="app-table-container">
+          <table class="app-table" aria-label="Recent API activity log">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Consumer</th>
+                <th>Endpoint</th>
+                <th>Status</th>
+                <th>Latency</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="recent-requests-table-body">
+              <tr>
+                <td class="font-monospace small">req_171001_8921</td>
+                <td>NovaCart Commerce</td>
+                <td class="font-monospace text-primary">/api/v1/weather</td>
+                <td><span class="badge bg-success">200 OK</span></td>
+                <td class="small text-muted font-monospace">284ms</td>
+                <td class="small text-secondary">Just now</td>
+              </tr>
+              <tr>
+                <td class="font-monospace small">req_171001_8920</td>
+                <td>ClimaCast Analytics</td>
+                <td class="font-monospace text-primary">/api/v1/weather</td>
+                <td><span class="badge bg-warning text-dark">429 Throttled</span></td>
+                <td class="small text-muted font-monospace">12ms</td>
+                <td class="small text-secondary">1 min ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/overview.js"></script>
+</body>
+</html>
