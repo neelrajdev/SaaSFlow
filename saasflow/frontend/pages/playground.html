@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Playground — SaaSFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div id="app-layout">
+    <div id="page-content">
+
+      <div class="row g-4">
+                <div class="col-lg-6">
+          <div class="app-card mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h2 class="h5 fw-bold text-dark mb-0">API Request Console</h2>
+              <span class="badge bg-light text-secondary border">Simulated Engine</span>
+            </div>
+
+            <form id="playground-form" onsubmit="return false;">
+                            <div class="mb-3 p-3 bg-light rounded-3 border">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                  <label for="select-staff-sender" class="form-label small fw-bold text-secondary mb-0">
+                    👤 Dispatch Call as Staff Member / Key:
+                  </label>
+                  <span id="playground-staff-rpm-badge" class="rpm-badge rpm-badge-normal">0 RPM</span>
+                </div>
+                <select id="select-staff-sender" class="form-select small">
+                                  </select>
+                <div class="form-text small text-muted">
+                  Simulate individual staff member traffic to observe per-staff Calls Per Minute (RPM).
+                </div>
+              </div>
+
+                            <div class="mb-3">
+                <label for="input-api-key" class="form-label small fw-bold text-secondary">
+                  API Key (<code class="text-primary">x-api-key</code> header):
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Secret credential passed in x-api-key header. The gateway verifies active status and binds to consumer limits.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Secret credential passed in x-api-key header. The gateway verifies active status and binds to consumer limits.</span>
+                  </span>
+                </label>
+                <div class="input-group">
+                  <input type="text" id="input-api-key" class="form-control font-monospace" placeholder="Enter sf_live_... API key" required>
+                  <button type="button" id="btn-use-invalid-key" class="btn btn-outline-danger btn-sm" title="Test 401 Unauthorized">
+                    Use Invalid Key
+                  </button>
+                </div>
+                <div class="form-text small text-muted">
+                  The API Gateway checks this key. An invalid or inactive key triggers a <code>401 Unauthorized</code> response.
+                </div>
+              </div>
+
+                            <div class="mb-3">
+                <label for="input-endpoint" class="form-label small fw-bold text-secondary">
+                  Target Endpoint:
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Simulated gateway microservices. Weather, Stock, Users, Analytics, Payments.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Simulated gateway microservices. Weather, Stock, Users, Analytics, Payments.</span>
+                  </span>
+                </label>
+                <div class="input-group">
+                  <select id="select-method" class="form-select" style="max-width: 100px;">
+                    <option value="GET" selected>GET</option>
+                    <option value="POST">POST</option>
+                  </select>
+                  <input type="text" id="input-endpoint" class="form-control font-monospace" list="endpoint-options" value="/api/v1/weather" placeholder="/api/v1/..." required>
+                  <datalist id="endpoint-options">
+                    <option value="/api/v1/weather">Weather Service</option>
+                    <option value="/api/v1/stock">Stock Ticker</option>
+                    <option value="/api/v1/users">User Directory</option>
+                    <option value="/api/v1/analytics">Analytics Summary</option>
+                    <option value="/api/v1/payments">Payments Gateway</option>
+                  </datalist>
+                </div>
+              </div>
+
+                            <div class="mb-3 d-none" id="post-body-container">
+                <label for="input-request-body" class="form-label small fw-bold text-secondary">JSON Request Body (POST):</label>
+                <textarea id="input-request-body" class="form-control font-monospace small" rows="3">{ "event": "test_ping", "timestamp": "2026-10-31" }</textarea>
+              </div>
+
+                            <div class="d-flex flex-wrap gap-2 pt-2">
+                <button type="button" id="btn-send-request" class="btn btn-primary d-flex align-items-center gap-2 px-4 fw-semibold">
+                  <span id="btn-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                  <span id="btn-send-text"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Request</span>
+                </button>
+                <button type="button" id="btn-rapid-requests" class="btn btn-outline-primary d-flex align-items-center gap-2" title="Send 5 rapid calls">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Trigger 5 Rapid Calls
+                </button>
+              </div>
+            </form>
+          </div>
+
+                    <div class="app-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h3 class="h6 fw-bold text-dark mb-0 text-uppercase tracking-wider">Session Request History</h3>
+              <button id="btn-clear-history" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size: 0.75rem;">
+                Clear View
+              </button>
+            </div>
+
+            <div class="app-table-container">
+              <table class="app-table" aria-label="Recent session requests">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Endpoint</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="playground-history-tbody">
+                  <tr>
+                    <td colspan="3" class="text-center text-muted small py-3">
+                      No requests sent yet in this session. Click <strong>Send Request</strong> above!
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-lg-6">
+          <div class="app-card h-100">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h2 class="h5 fw-bold text-dark mb-0">Gateway Response Output</h2>
+              <span class="small text-muted font-monospace" id="response-status-summary">Awaiting request...</span>
+            </div>
+
+                        <div id="playground-response-container" aria-live="polite" aria-atomic="true">
+              <div class="response-terminal">
+                <div class="terminal-header">
+                  <div class="status-indicator">
+                    <span class="badge bg-secondary px-2 py-1">Ready</span>
+                    <span class="latency-tag">0ms</span>
+                  </div>
+                  <button class="btn btn-sm btn-outline-light py-0 px-2 disabled" style="font-size: 0.75rem;">
+                    Copy JSON
+                  </button>
+                </div>
+                <pre class="terminal-body mb-0">// Press "Send Request" to trigger the API Gateway pipeline.</pre>
+              </div>
+            </div>
+
+                        <div class="mt-4 p-3 bg-light rounded-3 border">
+              <h4 class="h6 fw-bold text-dark mb-2">Simulated Gateway Pipeline:</h4>
+              <ol class="small text-secondary ps-3 mb-0">
+                <li class="mb-1"><strong>API Key Check:</strong> Verifies consumer key in simulated gateway (fails with <code>401</code>).</li>
+                <li class="mb-1"><strong>Per-Minute Limit:</strong> 60s window tracking (fails with <code>429</code> & retry countdown).</li>
+                <li class="mb-1"><strong>Monthly Hard Quota:</strong> Compares usage vs monthly limit (fails with <code>429</code>).</li>
+                <li><strong>Success:</strong> Simulates 200–600ms latency and returns <code>200 OK</code> payload.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/playground.js"></script>
+</body>
+</html>
