@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My API Credentials — SaaSFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div id="app-layout">
+    <div id="page-content">
+
+            <div class="app-card mb-4 bg-white p-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="text-primary"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
+              <h2 class="h4 fw-bold text-dark mb-0" id="consumer-tenant-name">NovaCart Commerce</h2>
+              <span id="consumer-plan-badge"><span class="badge-plan badge-plan-starter">Starter</span></span>
+            </div>
+            <p class="text-secondary small mb-0">
+              Manage your client API authentication credentials and monitor quota limits.
+            </p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="playground.html" class="btn btn-primary d-flex align-items-center gap-2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Launch Playground</span>
+            </a>
+            <a href="plans.html" class="btn btn-outline-secondary">
+              View Plans
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+                <div class="col-lg-6">
+          <div class="app-card h-100">
+            <h3 class="h6 fw-bold text-dark mb-3 text-uppercase tracking-wider">
+              Your API Secret Key
+              <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Secret credential passed in x-api-key header to authenticate requests. Isolated per consumer.">
+                <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                <span class="info-tooltip-popup">Secret credential passed in x-api-key header to authenticate requests. Isolated per consumer.</span>
+              </span>
+            </h3>
+            
+            <p class="text-secondary small mb-3">
+              Use this bearer key in the <code>x-api-key</code> request header when making simulated calls.
+            </p>
+
+            <div class="p-3 bg-light rounded-3 border mb-3">
+              <label for="consumer-api-key" class="form-label small fw-semibold text-secondary mb-1">Live API Key:</label>
+              <div class="input-group">
+                <input type="text" id="consumer-api-key" class="form-control font-monospace bg-white" value="sf_live_••••••••••••98234" readonly>
+                <button id="btn-toggle-consumer-mask-key" class="btn btn-outline-secondary" type="button" title="Show or hide full key">
+                  👁️
+                </button>
+                <button id="btn-copy-consumer-key" class="btn btn-outline-secondary" type="button" title="Copy to clipboard">
+                  📋 Copy
+                </button>
+              </div>
+            </div>
+
+            <div class="alert alert-light border small text-muted mb-0">
+              🔒 <strong>Consumer Isolation:</strong> Your session is bound strictly to your consumer ID. You cannot access or view credentials of any other consumer.
+            </div>
+          </div>
+        </div>
+
+                <div class="col-lg-6">
+          <div class="app-card h-100">
+            <h3 class="h6 fw-bold text-dark mb-3 text-uppercase tracking-wider">
+              Rate Limits & Quota Health
+              <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Rolling 60-second burst limit and monthly total volume allocated to your plan.">
+                <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                <span class="info-tooltip-popup">Rolling 60-second burst limit and monthly total volume allocated to your plan.</span>
+              </span>
+            </h3>
+
+                        <div class="p-3 bg-light rounded-3 border mb-3">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small fw-bold text-dark">
+                  60-Second Sliding Window Limit:
+                  <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Maximum requests allowed within a rolling 60-second window before receiving HTTP 429.">
+                    <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                    <span class="info-tooltip-popup">Maximum requests allowed within a rolling 60-second window before receiving HTTP 429.</span>
+                  </span>
+                </span>
+                <span class="badge bg-primary px-2" id="consumer-window-limit">20 req/min</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="small text-secondary">Calls used in active window:</span>
+                <span class="rpm-badge rpm-badge-normal" id="consumer-rpm-badge">0 / 20 RPM</span>
+              </div>
+              <div class="progress mb-2" style="height: 8px;">
+                <div id="consumer-rpm-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="small text-muted" id="consumer-rpm-reset-text">Rolling 60-second rate limiter window</div>
+            </div>
+
+                        <div>
+              <h4 class="h6 text-secondary small fw-semibold mb-2">
+                Monthly Hard Quota Consumption:
+                <span class="info-tooltip-wrap" tabindex="0" role="tooltip" aria-label="Portion of your monthly included API request volume consumed in the current calendar cycle.">
+                  <span class="info-tooltip-icon" aria-hidden="true">ℹ</span>
+                  <span class="info-tooltip-popup">Portion of your monthly included API request volume consumed in the current calendar cycle.</span>
+                </span>
+              </h4>
+              <div id="consumer-quota-bar-container">
+                <div class="quota-container">
+                  <div class="quota-header">
+                    <span>Monthly Quota</span>
+                    <span class="fw-semibold">43% used (43,000 / 100,000)</span>
+                  </div>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar quota-normal" role="progressbar" style="width: 43%;" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+            <div class="app-card mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap gap-2">
+          <div>
+            <h3 class="h6 fw-bold text-dark mb-0 text-uppercase tracking-wider">7-Day API Traffic Activity</h3>
+            <p class="text-secondary small mb-0">Daily request consumption and trend curve for your organization.</p>
+          </div>
+          <span class="badge bg-light text-secondary border px-2 py-1">📈 7-Day Curve</span>
+        </div>
+
+        <div id="consumer-traffic-chart" class="fancy-line-chart-container py-2" aria-label="7 day consumer API activity curve">
+                  </div>
+      </div>
+
+            <div class="app-card mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+          <div>
+            <h3 class="h6 fw-bold text-dark mb-0 text-uppercase tracking-wider">Team Member API Keys (Staff Sub-Keys)</h3>
+            <p class="text-secondary small mb-0">Issue sub-keys to your engineering staff. Calls roll up to your plan quota while calculating per-staff RPM.</p>
+          </div>
+          <button type="button" id="btn-open-consumer-add-staff" class="btn btn-primary btn-sm d-flex align-items-center gap-1 shadow-sm">
+            <span>➕</span> <span>Provision Staff Key</span>
+          </button>
+        </div>
+
+        <div class="app-table-container">
+          <table class="app-table" aria-label="Team member staff sub-keys">
+            <thead>
+              <tr>
+                <th>Staff Member</th>
+                <th>Role / Team</th>
+                <th>Staff Sub-Key</th>
+                <th>Live RPM</th>
+                <th>Monthly Calls</th>
+                <th>Usage Share</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="consumer-staff-tbody">
+                          </tbody>
+          </table>
+        </div>
+      </div>
+
+            <div class="app-card bg-primary-light border-primary-border p-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <h4 class="h6 fw-bold text-primary mb-1">Ready to test simulated API requests?</h4>
+            <p class="text-secondary small mb-0">
+              Open the interactive Playground to trigger simulated responses, test rate limiting, and observe <code>429</code> retry timers.
+            </p>
+          </div>
+          <a href="playground.html" class="btn btn-primary btn-sm">
+            Open API Playground →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <div class="modal fade" id="modal-consumer-add-staff" tabindex="-1" aria-labelledby="modalConsumerStaffLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg border-0">
+        <div class="modal-header bg-light">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-primary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
+            <h5 class="modal-title fw-bold text-dark mb-0" id="modalConsumerStaffLabel">Issue Team Member API Key</h5>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="form-consumer-add-staff">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label for="c-staff-name" class="form-label fw-bold small text-secondary">Colleague / Staff Full Name *</label>
+              <input type="text" class="form-control" id="c-staff-name" placeholder="e.g. Rachel Adams" required>
+            </div>
+            <div class="mb-3">
+              <label for="c-staff-role" class="form-label fw-bold small text-secondary">Role / Responsibilities</label>
+              <input type="text" class="form-control" id="c-staff-role" placeholder="e.g. Backend Integrations" required>
+            </div>
+            <div class="mb-3">
+              <label for="c-staff-email" class="form-label fw-bold small text-secondary">Work Email</label>
+              <input type="email" class="form-control" id="c-staff-email" placeholder="rachel@company.com">
+            </div>
+            <div class="p-3 bg-light rounded-3 border small text-muted">
+              🔒 <strong>Staff Attribution:</strong> Your colleague will receive a unique API sub-key. The founder and finance team can correlate per-staff calls and RPM without affecting other colleagues.
+            </div>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary fw-semibold px-4">Generate Staff Key</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/my-api.js"></script>
+</body>
+</html>
