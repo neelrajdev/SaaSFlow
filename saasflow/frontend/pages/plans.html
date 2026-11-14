@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Plans — SaaSFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div id="app-layout">
+    <div id="page-content">
+
+            <div class="text-center mb-5" style="max-width: 650px; margin: 0 auto;">
+        <h2 class="display-6 fw-bold text-dark mb-2">Simple, Transparent API Pricing</h2>
+        <p class="lead text-secondary fs-6">
+          Scalable quotas designed for every stage of your growth. Fixed-window rate limiting and predictable overage fees.
+        </p>
+        <div id="founder-custom-plan-action" class="mt-3 d-none">
+          <button type="button" id="btn-open-create-plan" class="btn btn-primary d-inline-flex align-items-center gap-2 shadow-sm">
+            <span>✨</span> <span>Create Custom Enterprise Plan</span>
+          </button>
+        </div>
+      </div>
+
+            <div class="row g-4 mb-5" id="plans-container">
+
+                <div class="col-lg-4">
+          <div class="card h-100 border rounded-4 p-4 shadow-sm bg-white position-relative" id="card-plan-free">
+            <div class="mb-3">
+              <span class="badge-plan badge-plan-free mb-2">Free Tier</span>
+              <h3 class="h4 fw-bold text-dark mb-1">Developer Sandbox</h3>
+              <p class="text-secondary small">For prototyping and small personal experiments.</p>
+            </div>
+
+            <div class="d-flex align-items-baseline mb-4">
+              <span class="display-5 fw-bold text-dark">₹0</span>
+              <span class="text-muted ms-2">/ month</span>
+            </div>
+
+            <ul class="list-unstyled mb-4 small text-secondary">
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>5 req/min</strong> fixed-window rate limit
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>10,000</strong> monthly hard quota
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> 10,000 included calls
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2 text-muted">
+                <span>✕</span> No overage allowed (Hard cutoff)
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> Community Discord support
+              </li>
+            </ul>
+
+            <div class="mt-auto">
+              <div class="p-2 bg-light rounded text-center small text-muted font-monospace">
+                overageRate: ₹0 / 1k
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-lg-4">
+          <div class="card h-100 border border-primary rounded-4 p-4 shadow-md bg-white position-relative" id="card-plan-starter">
+            <div class="position-absolute top-0 end-0 translate-middle-y me-4">
+              <span class="badge bg-primary px-3 py-1 rounded-pill shadow-sm">Benchmark Tier</span>
+            </div>
+
+            <div class="mb-3">
+              <span class="badge-plan badge-plan-starter mb-2">Starter Tier</span>
+              <h3 class="h4 fw-bold text-dark mb-1">Growth Business</h3>
+              <p class="text-secondary small">For fast-growing startups processing regular client traffic.</p>
+            </div>
+
+            <div class="d-flex align-items-baseline mb-4">
+              <span class="display-5 fw-bold text-primary">₹999</span>
+              <span class="text-muted ms-2">/ month</span>
+            </div>
+
+            <ul class="list-unstyled mb-4 small text-secondary">
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>20 req/min</strong> fixed-window rate limit
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>100,000</strong> monthly hard limit
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>50,000</strong> included base calls
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>₹40 per 1,000</strong> overage calls
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> Standard 24h email SLA
+              </li>
+            </ul>
+
+            <div class="mt-auto">
+              <div class="p-2 bg-primary-light rounded text-center small text-primary font-monospace fw-semibold">
+                PRD Verified: 11,250 overage = ₹450
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <div class="col-lg-4">
+          <div class="card h-100 border rounded-4 p-4 shadow-sm bg-white position-relative" id="card-plan-pro">
+            <div class="mb-3">
+              <span class="badge-plan badge-plan-pro mb-2">Pro Tier</span>
+              <h3 class="h4 fw-bold text-dark mb-1">Scale Platform</h3>
+              <p class="text-secondary small">For high-throughput applications and large-scale operations.</p>
+            </div>
+
+            <div class="d-flex align-items-baseline mb-4">
+              <span class="display-5 fw-bold text-dark">₹2,999</span>
+              <span class="text-muted ms-2">/ month</span>
+            </div>
+
+            <ul class="list-unstyled mb-4 small text-secondary">
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>60 req/min</strong> fixed-window rate limit
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>500,000</strong> monthly hard limit
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>200,000</strong> included base calls
+              </li>
+              <li class="mb-2 d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> <strong>₹20 per 1,000</strong> discounted overage
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <span class="text-success">✓</span> Dedicated account manager
+              </li>
+            </ul>
+
+            <div class="mt-auto">
+              <div class="p-2 bg-light rounded text-center small text-muted font-monospace">
+                overageRate: ₹20 / 1k
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+    <div class="modal fade" id="modal-create-custom-plan" tabindex="-1" aria-labelledby="modalCreatePlanLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg border-0">
+        <div class="modal-header bg-light">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-primary"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29a2.4 2.4 0 0 0 3.42 0l6.58-6.58a2.4 2.4 0 0 0 0-3.42L12 2Z"/><circle cx="7" cy="7" r="1.5"/></svg></span>
+            <h5 class="modal-title fw-bold text-dark mb-0" id="modalCreatePlanLabel">Design Custom Enterprise Plan</h5>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="form-create-custom-plan">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label for="custom-plan-name" class="form-label fw-bold small text-secondary">Plan Name *</label>
+              <input type="text" class="form-control" id="custom-plan-name" placeholder="e.g. Enterprise High-Frequency" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-sm-6">
+                <label for="custom-plan-fee" class="form-label fw-bold small text-secondary">Monthly Base Fee (₹) *</label>
+                <input type="number" class="form-control" id="custom-plan-fee" min="0" placeholder="e.g. 4999" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="custom-plan-rpm" class="form-label fw-bold small text-secondary">Rate Limit (RPM) *</label>
+                <input type="number" class="form-control" id="custom-plan-rpm" min="1" max="1000" placeholder="e.g. 100" required>
+              </div>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-sm-6">
+                <label for="custom-plan-included" class="form-label fw-bold small text-secondary">Included Calls *</label>
+                <input type="number" class="form-control" id="custom-plan-included" min="0" placeholder="e.g. 300000" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="custom-plan-limit" class="form-label fw-bold small text-secondary">Monthly Hard Limit *</label>
+                <input type="number" class="form-control" id="custom-plan-limit" min="1000" placeholder="e.g. 800000" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="custom-plan-overage" class="form-label fw-bold small text-secondary">Overage Rate (₹ per 1,000 calls) *</label>
+              <input type="number" class="form-control" id="custom-plan-overage" min="0" placeholder="e.g. 15" required>
+              <div class="form-text small text-muted">
+                Integer paise calculations ensure floating-point precision on every invoice.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary fw-semibold px-4">Publish Custom Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/plans.js"></script>
+</body>
+</html>
