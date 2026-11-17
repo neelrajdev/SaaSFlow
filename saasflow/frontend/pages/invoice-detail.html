@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Detail — SaaSFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div id="app-layout">
+    <div id="page-content">
+
+            <div class="mb-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-3">
+          <div>
+            <div class="d-flex align-items-center gap-2">
+              <h2 class="h4 fw-bold text-dark mb-0 font-monospace" id="invoice-id-display">INV-PAYEASY-2026-10</h2>
+              <span id="invoice-status-badge"><span class="badge-status badge-status-unpaid">Unpaid</span></span>
+            </div>
+            <span class="small text-muted" id="invoice-date-issued">Billing Cycle: October 2026</span>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2" id="finance-actions-container">
+          <button type="button" id="btn-print-invoice" class="btn btn-outline-secondary d-flex align-items-center gap-1" onclick="window.print()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg> <span>Print Invoice</span>
+          </button>
+          <button type="button" id="btn-mark-paid" class="btn btn-success fw-semibold d-flex align-items-center gap-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg> <span>Mark as Paid</span>
+          </button>
+        </div>
+      </div>
+
+            <div class="app-card p-4 p-md-5 bg-white border shadow-sm mx-auto" style="max-width: 820px;">
+                <div class="row pb-4 mb-4 border-bottom">
+          <div class="col-sm-6">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="logo-icon bg-primary text-white p-2 rounded fw-bold fs-5">S</span>
+              <h3 class="h4 fw-bold text-dark mb-0">SaaSFlow API Platform</h3>
+            </div>
+            <p class="small text-muted mb-0">Automated Metered Billing Department</p>
+            <p class="small text-muted mb-0">Bangalore, India</p>
+          </div>
+
+          <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+            <h4 class="h5 fw-bold text-dark mb-1 font-monospace" id="paper-invoice-id">INV-PAYEASY-2026-10</h4>
+            <p class="small text-secondary mb-0">Date: <span id="paper-invoice-date">October 31, 2026</span></p>
+            <p class="small text-secondary mb-0">Billed To: <strong id="paper-tenant-name">PayEasy Financial Technologies</strong></p>
+            <p class="small font-monospace text-muted mb-0">Consumer ID: <span id="paper-tenant-id">payeasy</span></p>
+          </div>
+        </div>
+
+                <div class="p-3 bg-light rounded-3 border mb-4">
+          <div class="row text-center text-sm-start g-2">
+            <div class="col-sm-4">
+              <span class="small text-muted d-block">Billed Tier:</span>
+              <strong class="text-dark" id="paper-plan-name">Starter Plan</strong>
+            </div>
+            <div class="col-sm-4">
+              <span class="small text-muted d-block">Included Calls:</span>
+              <strong class="text-dark" id="paper-included-quota">50,000 calls</strong>
+            </div>
+            <div class="col-sm-4">
+              <span class="small text-muted d-block">Actual Calls Processed:</span>
+              <strong class="text-primary" id="paper-actual-usage">61,250 calls</strong>
+            </div>
+          </div>
+        </div>
+
+                <div class="table-responsive mb-4">
+          <table class="table align-middle" aria-label="Invoice line item breakdown">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col" class="text-center">Usage Volume</th>
+                <th scope="col" class="text-end">Rate / Fee</th>
+                <th scope="col" class="text-end">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td>
+                  <strong class="text-dark">Base Monthly Subscription Fee</strong>
+                  <div class="small text-muted">Starter tier fixed monthly platform charge</div>
+                </td>
+                <td class="text-center font-monospace small">1 Month</td>
+                <td class="text-end font-monospace">₹999.00</td>
+                <td class="text-end font-monospace fw-semibold" id="paper-base-fee">₹999.00</td>
+              </tr>
+
+                            <tr>
+                <td>
+                  <strong class="text-dark">Metered API Usage Overage</strong>
+                  <div class="small text-muted">
+                    <span id="paper-overage-calc-details">11,250 excess calls above 50,000 included calls</span>
+                  </div>
+                </td>
+                <td class="text-center font-monospace small" id="paper-overage-volume">11,250 calls</td>
+                <td class="text-end font-monospace small">₹40.00 / 1k</td>
+                <td class="text-end font-monospace fw-semibold text-warning" id="paper-overage-charge">₹450.00</td>
+              </tr>
+            </tbody>
+            <tfoot class="border-top">
+              <tr>
+                <th colspan="3" class="text-end text-muted fw-normal">Subtotal:</th>
+                <th class="text-end font-monospace" id="paper-subtotal">₹1,449.00</th>
+              </tr>
+              <tr class="fs-5 table-light">
+                <th colspan="3" class="text-end fw-bold text-dark">Total Amount Due:</th>
+                <th class="text-end font-monospace fw-bold text-primary" id="paper-total-amount">₹1,449.00</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+                <div class="mb-4 p-3 bg-light rounded-3 border">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <div>
+              <strong class="text-dark small d-block">Internal Department & Staff Usage Attribution</strong>
+              <span class="small text-muted">Correlates call volume and overage cost liability per staff member sub-key.</span>
+            </div>
+            <span class="badge bg-secondary-subtle text-secondary border">Finance Audit</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-sm table-bordered bg-white align-middle mb-0" aria-label="Staff usage attribution audit table">
+              <thead class="table-light small">
+                <tr>
+                  <th>Staff Member</th>
+                  <th>Role / Department</th>
+                  <th class="text-center">Calls Logged</th>
+                  <th class="text-center">Volume Share</th>
+                  <th class="text-end">Attributed Overage</th>
+                </tr>
+              </thead>
+              <tbody id="paper-staff-attribution-tbody" class="small">
+                              </tbody>
+            </table>
+          </div>
+        </div>
+
+                <div class="p-3 rounded-3 border d-flex align-items-center justify-content-between" id="paper-payment-box" style="background-color: var(--warning-bg); border-color: var(--warning-border);">
+          <div class="d-flex align-items-center gap-2">
+            <span class="fs-4" id="paper-payment-icon">⏳</span>
+            <div>
+              <strong class="text-dark" id="paper-payment-heading">Payment Status: Unpaid</strong>
+              <div class="small text-secondary" id="paper-payment-sub">Awaiting payment verification by Finance.</div>
+            </div>
+          </div>
+          <span class="badge bg-warning text-dark px-3 py-2" id="paper-payment-badge">Awaiting Payment</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/invoice-detail.js"></script>
+</body>
+</html>
